@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'antd';
-import { ArrowLeftOutlined } from '@ant-design/icons';
+import { Button, Space } from 'antd';
+import { ArrowLeftOutlined, EditOutlined } from '@ant-design/icons';
 
 
 class Details extends Component {
@@ -17,13 +17,22 @@ class Details extends Component {
         {movies[details].description}
         {genres.map((genre, i) => <span key={i}>{genre} </span>)}
         <br />
-        <Button
-          type='primary'
-          icon={<ArrowLeftOutlined />}
-          onClick={() => this.props.history.push('/')}
-        >
-          Back
-        </Button>
+        <Space>
+          <Button
+            type='primary'
+            icon={<ArrowLeftOutlined />}
+            onClick={() => this.props.history.push('/')}
+          >
+            Back
+          </Button>
+          <Button
+            type='default'
+            icon={<EditOutlined />}
+            onClick={() => this.props.history.push('/')}
+          >
+            Edit
+          </Button>
+        </Space>
       </>
     )
   }
