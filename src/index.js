@@ -28,10 +28,11 @@ function* fetchMovies() {
   }
 }
 
-function* fetchGenres() {
+function* fetchGenres(action) {
   try {
-    const response = yield Axios.get('/movies/details');
-    yield put({ type: 'SET_GENRES', payload: response.data });
+    console.log(action.payload);
+    const response = yield Axios.get(`/genres/${action.payload}`);
+    yield put({ type: 'SET_GENRES', payload: response.data[0].genres });
   } catch (error) {
     alert('Unable to retrieve genres from server.');
   }

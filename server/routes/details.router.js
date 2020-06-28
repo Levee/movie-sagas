@@ -3,7 +3,7 @@ const pool = require('../modules/pool.js');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  queryText = ``;
+  const queryText = ``;
   pool.query(queryText)
     .then(result => res.send(result.rows))
     .catch(error => console.log(error));
