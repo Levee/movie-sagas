@@ -7,6 +7,6 @@ router.get('/', (req, res) => {
   pool.query(queryText)
     .then(result => res.send(result.rows))
     .catch(error => console.log(error));
-})
+});
 
 module.exports = router;

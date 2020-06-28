@@ -15,6 +15,8 @@ import Axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
   yield takeEvery('FETCH_MOVIES', fetchMovies);
+  yield takeEvery('FETCH_GENRES', fetchGenres);
+  yield takeEvery('FETCH_DETAILS', fetchDetails);
 }
 
 function* fetchMovies() {
@@ -23,6 +25,23 @@ function* fetchMovies() {
     yield put({ type: 'SET_MOVIES', payload: response.data });
   } catch (error) {
     alert('Unable to retrieve movies from server.');
+  }
+}
+
+function* fetchGenres() {
+  try {
+    const response = yield Axios.get('/movies/details');
+    yield put({ type: 'SET_GENRES', payload: response.data });
+  } catch (error) {
+    alert('Unable to retrieve genres from server.');
+  }
+}
+
+function* fetchDetails(action) {
+  try {
+    yield put({ type: 'SET_DETAILS', payload: action.payload });
+  } catch (error) {
+    alert('Unable to retrieve details from server.');
   }
 }
 
@@ -49,7 +68,8 @@ const genres = (state = [], action) => {
   }
 }
 
-const details = (state = 0, action) => {
+// Used to store the current details page
+const details = (state = null, action) => {
   switch (action.type) {
     case 'SET_DETAILS':
       return action.payload;
