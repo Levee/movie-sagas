@@ -22,3 +22,13 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+body {
+  margin: 0;
+  padding: 3rem;
+}
+
+.ant-col {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
