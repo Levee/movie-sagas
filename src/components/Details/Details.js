@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Space } from 'antd';
-import { ArrowLeftOutlined, EditOutlined } from '@ant-design/icons';
+import { ArrowLeftOutlined, EditOutlined, HomeOutlined } from '@ant-design/icons';
 
 
 class Details extends Component {
@@ -10,29 +10,37 @@ class Details extends Component {
   }
 
   render() {
-    const { movies, genres, details } = this.props;
+    const { movies, genres, details, history } = this.props;
     return (
       <>
-        <h2>{movies[details].title}</h2>
-        {movies[details].description}
-        {genres.map((genre, i) => <span key={i}>{genre} </span>)}
-        <br />
-        <Space>
-          <Button
-            type='primary'
-            icon={<ArrowLeftOutlined />}
-            onClick={() => this.props.history.push('/')}
-          >
-            Back
-          </Button>
-          <Button
-            type='default'
-            icon={<EditOutlined />}
-            onClick={() => this.props.history.push('/')}
-          >
-            Edit
-          </Button>
-        </Space>
+        {(movies === [] || genres === [] || details === null) ?
+          <>
+            {/* <h2>Error loading details.</h2>
+            <Button type='primary' icon={<HomeOutlined />} onLoad={history.push('/')}>Return Home</Button> */}
+            {history.push('/')}
+          </>
+          : <>
+            <h2>{movies[details].title}</h2>
+            {movies[details].description}
+            {genres.map((genre, i) => <span key={i}>{genre} </span>)}
+            <br />
+            <Space>
+              <Button
+                type='primary'
+                icon={<ArrowLeftOutlined />}
+                onClick={() => history.push('/')}
+              >
+                Back
+              </Button>
+              <Button
+                type='default'
+                icon={<EditOutlined />}
+                onClick={() => history.push('/')}
+              >
+                Edit
+              </Button>
+            </Space>
+          </>}
       </>
     )
   }
