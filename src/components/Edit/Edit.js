@@ -15,43 +15,40 @@ const validateMessages = {
 
 class Edit extends Component {
   render() {
-    const { movies, details, history } = this.props;
+    const { movies, details, dispatch, history } = this.props;
     const onFinish = values => {
       console.log(values);
-      this.props.dispatch({ type: ''})
+      dispatch({ type: 'DISPATCH_EDITS', payload: { values: values, id: details } });
+      history.push(`/details/${details}`);
     };
     return (
       <>
         <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
           <Form.Item name={['movie', 'title']} label="Title" rules={[{ required: true }]}>
-            <Input onChange={event => this.setState({
-              edit: {
-                title: event.target.value
-              }
-            })} />
+            <Input value='test' />
           </Form.Item>
           <Form.Item name={['movie', 'description']} label="Description" rules={[{ required: true }]}>
-            <Input.TextArea onChange={event => this.setState({
-              edit: {
-                description: event.target.value
-              }
-            })} />
+            <Input.TextArea
+              value={movies[details].description}
+              autoSize={{ minRows: 3, maxRows: 10 }}
+            />
           </Form.Item>
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
+            <Space>
+              <Button
+                type='default'
+                danger
+                icon={<StopOutlined />}
+                onClick={() => history.push(`/details/${details}`)}
+              >Cancel</Button>
+              <Button
+                type='primary'
+                icon={<SaveOutlined />}
+                htmlType='submit'
+              >Save</Button>
+            </Space>
           </Form.Item>
         </Form>
-        <Space>
-          <Button
-            type='default'
-            danger
-            icon={<StopOutlined />}
-            onClick={() => history.push(`/details/${details}`)}
-          >Cancel</Button>
-          <Button type='primary' icon={<SaveOutlined />}>Save</Button>
-        </Space>
       </>
     )
   }

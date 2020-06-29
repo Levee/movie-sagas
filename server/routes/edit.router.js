@@ -2,9 +2,9 @@ const express = require('express');
 const pool = require('../modules/pool.js');
 const router = express.Router();
 
-router.get('/:id', (req, res) => {
-  const title = req.body.title;
-  const description = req.body.description;
+router.put('/:id', (req, res) => {
+  const title = req.body.movie.title;
+  const description = req.body.movie.description;
   const id = req.params.id;
   const queryText = `
     UPDATE movies

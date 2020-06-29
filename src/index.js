@@ -17,6 +17,7 @@ function* rootSaga() {
   yield takeEvery('FETCH_MOVIES', fetchMovies);
   yield takeEvery('FETCH_GENRES', fetchGenres);
   yield takeEvery('FETCH_DETAILS', fetchDetails);
+  yield takeEvery('DISPATCH_EDITS', dispatchEdits);
 }
 
 function* fetchMovies() {
@@ -43,6 +44,15 @@ function* fetchDetails(action) {
     yield put({ type: 'SET_DETAILS', payload: action.payload });
   } catch (error) {
     alert('Unable to retrieve details from server.');
+  }
+}
+
+function* dispatchEdits(action) {
+  try {
+    yield Axios.put(`/edit/${action.payload.id + 1}`, action.payload.values);
+    yield put({ type: 'FETCH_MOVIES' });
+  } catch (error) {
+    alert('Unable to send changes to server.');
   }
 }
 
