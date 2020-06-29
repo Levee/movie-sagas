@@ -12,7 +12,7 @@ class Movies extends Component {
   handleClick = (i) => {
     console.log('in handleClick');
     this.props.dispatch({ type: 'FETCH_DETAILS', payload: i });
-    this.props.history.push(`/details/${i + 1}`);
+    this.props.history.push(`/details/${i}`);
   }
 
   render() {

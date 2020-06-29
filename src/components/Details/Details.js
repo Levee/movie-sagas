@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Space } from 'antd';
-import { ArrowLeftOutlined, EditOutlined, HomeOutlined } from '@ant-design/icons';
+import { ArrowLeftOutlined, EditOutlined } from '@ant-design/icons';
 
 
 class Details extends Component {
@@ -15,8 +15,6 @@ class Details extends Component {
       <>
         {(movies === [] || genres === [] || details === null) ?
           <>
-            {/* <h2>Error loading details.</h2>
-            <Button type='primary' icon={<HomeOutlined />} onLoad={history.push('/')}>Return Home</Button> */}
             {history.push('/')}
           </>
           : <>
@@ -35,7 +33,7 @@ class Details extends Component {
               <Button
                 type='default'
                 icon={<EditOutlined />}
-                onClick={() => history.push('/')}
+                onClick={() => history.push(`/edit/${details}`)}
               >
                 Edit
               </Button>
