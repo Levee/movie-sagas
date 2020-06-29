@@ -45,7 +45,9 @@ class Edit extends Component {
                 type='primary'
                 icon={<SaveOutlined />}
                 htmlType='submit'
-              >Save</Button>
+              >
+                Save
+              </Button>
             </Space>
           </Form.Item>
         </Form>
