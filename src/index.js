@@ -39,6 +39,7 @@ function* fetchGenres(action) {
   }
 }
 
+// remembers which movie to show details for
 function* fetchDetails(action) {
   try {
     yield put({ type: 'SET_DETAILS', payload: action.payload });
@@ -47,6 +48,7 @@ function* fetchDetails(action) {
   }
 }
 
+// sends edits to the server to save in the database
 function* dispatchEdits(action) {
   try {
     yield Axios.put(`/edit/${action.payload.id + 1}`, action.payload.values);

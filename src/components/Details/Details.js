@@ -7,6 +7,7 @@ const { TabPane } = Tabs;
 
 
 class Details extends Component {
+  // on mount, dispatch 'FETCH_GENRES' to retrieve the genres for the selected movie
   componentDidMount = () => {
     this.props.dispatch({ type: 'FETCH_GENRES', payload: this.props.details + 1 });
   }
@@ -15,12 +16,15 @@ class Details extends Component {
     const { movies, genres, details, history } = this.props;
     return (
       <>
+        {/*
+          Conditionally render details if a movie was selected.
+          If the page is reloaded on the details page, you will be redirected to the home page.
+        */}
         {(movies === [] || genres === [] || details === null) ?
           <>
             {history.push('/')}
           </>
           : <>
-            <h2>{movies[details].title}</h2>
             <Tabs defaultActiveKey="1">
               <TabPane
                 tab={
@@ -31,7 +35,7 @@ class Details extends Component {
                 key="1"
               >
                 <h2>{movies[details].title}</h2>
-                <p>{genres.map((genre, i) => <span key={i}>{genre} </span>)}</p>
+                <ul>{genres.map((genre, i) => <li key={i}>{genre} </li>)}</ul>
               </TabPane>
               <TabPane
                 tab={
@@ -41,7 +45,7 @@ class Details extends Component {
                 }
                 key="2"
               >
-                <p>{movies[details].description}</p>
+                <p style={{textAlign: 'justify'}}>{movies[details].description}</p>
               </TabPane>
             </Tabs>
             <br />
@@ -67,6 +71,7 @@ class Details extends Component {
   }
 }
 
+// get props from global state
 const mapStateToProps = (state) => {
   return {
     movies: state.movies,

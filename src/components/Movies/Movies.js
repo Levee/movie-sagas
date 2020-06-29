@@ -9,6 +9,7 @@ class Movies extends Component {
     this.props.dispatch({ type: 'FETCH_MOVIES' });
   }
 
+  // dispatch 'FETCH_DETAILS' when a Col is clicked
   handleClick = (i) => {
     console.log('in handleClick');
     this.props.dispatch({ type: 'FETCH_DETAILS', payload: i });
@@ -19,13 +20,13 @@ class Movies extends Component {
     const { Meta } = Card;
     return (
       <Row align='middle'>
+        {/* map all the movies as a Column containing a Card */}
         {this.props.movies.map((movie, i) =>
           <Col
             onClick={() => this.handleClick(i)}
             key={i}
-            sm={12}
-            md={8}
-            lg={6}
+            md={12}
+            lg={8}
           >
             <Card
               hoverable
@@ -41,6 +42,7 @@ class Movies extends Component {
   }
 }
 
+// get props from global state
 const mapStateToProps = (state) => {
   return {
     movies: state.movies,

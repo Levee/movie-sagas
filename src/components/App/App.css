@@ -1,7 +1,12 @@
 .App {
   text-align: center;
+  background-color: #e1ecff;
+  width: 65%;
+  margin: 1rem auto;
+  padding: 1rem;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
 }
-
 
 .App-header {
   background-color: #222;
@@ -21,11 +26,6 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}
-
-body {
-  margin: 0;
-  padding: 3rem;
 }
 
 .ant-col {

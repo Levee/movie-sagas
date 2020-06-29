@@ -33,7 +33,7 @@ class Edit extends Component {
               autoSize={{ minRows: 3, maxRows: 10 }}
             />
           </Form.Item>
-          <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
+          {/* <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}> */}
             <Space>
               <Button
                 type='default'
@@ -49,13 +49,14 @@ class Edit extends Component {
                 Save
               </Button>
             </Space>
-          </Form.Item>
+          {/* </Form.Item> */}
         </Form>
       </>
     )
   }
 }
 
+// get props from global state
 const mapStateToProps = (state) => {
   return {
     movies: state.movies,

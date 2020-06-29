@@ -1,9 +1,5 @@
-# Project Name
-
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+# Movie Saga Weekend Project
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
-
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+This project simulates a site that lists movies. When clicking on a movie, it will bring you a detailed view where you can read the description and see the genres related to that selected title. You can also edit each movie title and description. Upon saving, your changes will be stored in a database.
